@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import SplashScreen from './components/SplashScreen'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
@@ -24,13 +25,27 @@ function PageWrapper({ children }) {
 
 function App() {
   const location = useLocation()
+  const [showSplash, setShowSplash] = useState(true)
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
   }, [location.pathname])
 
+  useEffect(() => {
+    document.body.style.overflow = showSplash ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [showSplash])
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSplash(false), 2000)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <div className="min-h-screen bg-[#07080f] text-white flex flex-col">
+      <AnimatePresence>{showSplash && <SplashScreen key="splash" />}</AnimatePresence>
       <Navbar />
       <main className="flex-1">
         <AnimatePresence mode="wait">
