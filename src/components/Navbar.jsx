@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import GlowButton from './GlowButton'
 import Logo from './Logo'
+import ThemeToggle from './ThemeToggle'
 
 const links = [
   { label: 'Home', to: '/' },
@@ -24,12 +25,12 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b bg-[#07080f]/60 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300 ${
-        scrolled ? 'border-white/10' : 'border-transparent'
+      className={`sticky top-0 z-50 border-b bg-[#07080f]/60 light:bg-white/90 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.35)] light:shadow-[0_2px_16px_rgba(15,23,42,0.08)] transition-all duration-300 ${
+        scrolled ? 'border-white/10 light:border-[#e2e8f0]' : 'border-transparent'
       }`}
     >
       {/* Glass sheen highlight along the top edge */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 light:via-black/5 to-transparent" />
 
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         <Link to="/" onClick={() => setOpen(false)}>
@@ -43,7 +44,9 @@ export default function Navbar() {
               to={link.to}
               className={({ isActive }) =>
                 `relative text-sm transition-colors group ${
-                  isActive ? 'text-white' : 'text-gray-300 hover:text-white'
+                  isActive
+                    ? 'text-white light:text-[#0a0f1e]'
+                    : 'text-gray-300 light:text-gray-600 hover:text-white light:hover:text-[#0a0f1e]'
                 }`
               }
             >
@@ -61,23 +64,29 @@ export default function Navbar() {
           ))}
         </div>
 
-        <Link to="/contact" className="hidden md:block">
-          <GlowButton className="px-5 py-2 text-sm">Let's Talk</GlowButton>
-        </Link>
+        <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
+          <Link to="/contact">
+            <GlowButton className="px-5 py-2 text-sm">Let's Talk</GlowButton>
+          </Link>
+        </div>
 
-        <button
-          className="md:hidden text-white"
-          onClick={() => setOpen((o) => !o)}
-          aria-label="Toggle menu"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            {open ? (
-              <path strokeWidth="2" strokeLinecap="round" d="M6 6l12 12M6 18L18 6" />
-            ) : (
-              <path strokeWidth="2" strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            className="text-white light:text-[#0a0f1e]"
+            onClick={() => setOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              {open ? (
+                <path strokeWidth="2" strokeLinecap="round" d="M6 6l12 12M6 18L18 6" />
+              ) : (
+                <path strokeWidth="2" strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
       </nav>
 
       {open && (
@@ -85,7 +94,7 @@ export default function Navbar() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          className="md:hidden bg-[#07080f]/95 backdrop-blur-lg border-b border-white/10 px-6 pb-6 flex flex-col gap-4"
+          className="md:hidden bg-[#07080f]/95 light:bg-white/95 backdrop-blur-lg border-b border-white/10 light:border-[#e2e8f0] px-6 pb-6 flex flex-col gap-4"
         >
           {links.map((link) => (
             <NavLink
@@ -93,7 +102,11 @@ export default function Navbar() {
               to={link.to}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `text-sm ${isActive ? 'text-white' : 'text-gray-300 hover:text-white'}`
+                `text-sm ${
+                  isActive
+                    ? 'text-white light:text-[#0a0f1e]'
+                    : 'text-gray-300 light:text-gray-600 hover:text-white light:hover:text-[#0a0f1e]'
+                }`
               }
             >
               {link.label}

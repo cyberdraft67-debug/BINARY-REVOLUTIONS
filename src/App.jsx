@@ -44,7 +44,7 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#07080f] text-white flex flex-col">
+    <div className="min-h-screen bg-[#07080f] text-white light:bg-[#f0f4ff] light:text-[#0a0f1e] flex flex-col">
       <AnimatePresence>{showSplash && <SplashScreen key="splash" />}</AnimatePresence>
       <Navbar />
       <main className="flex-1">

@@ -20,10 +20,10 @@ export default function SkillBar({ label, percentage, delay = 0 }) {
   return (
     <div ref={ref}>
       <div className="mb-2 flex items-center justify-between text-sm">
-        <span className="font-medium text-white">{label}</span>
+        <span className="font-medium text-white light:text-[#0a0f1e]">{label}</span>
         <span className="font-semibold text-[#1b8ef5]">{display}%</span>
       </div>
-      <div className="h-2.5 w-full overflow-hidden rounded-full bg-white/10">
+      <div className="h-2.5 w-full overflow-hidden rounded-full bg-white/10 light:bg-[#e2e8f0]">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: inView ? `${percentage}%` : 0 }}

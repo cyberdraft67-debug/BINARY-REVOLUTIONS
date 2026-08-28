@@ -30,7 +30,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#07080f]">
+    <footer className="border-t border-white/10 light:border-[#e2e8f0] bg-[#07080f] light:bg-white">
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
           <div>
@@ -39,17 +39,23 @@ export default function Footer() {
             </Link>
             <a
               href="mailto:info@binaryrevolutions.com"
-              className="mt-4 inline-block text-sm text-gray-400 transition-colors hover:text-[#1b8ef5]"
+              className="mt-4 inline-block text-sm text-gray-400 light:text-gray-600 transition-colors hover:text-[#1b8ef5]"
             >
               info@binaryrevolutions.com
             </a>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-widest text-gray-500">Links</h4>
-            <div className="mt-4 flex flex-col gap-3 text-sm text-gray-400">
+            <h4 className="text-sm font-semibold uppercase tracking-widest text-gray-500 light:text-gray-500">
+              Links
+            </h4>
+            <div className="mt-4 flex flex-col gap-3 text-sm text-gray-400 light:text-gray-600">
               {links.map((link) => (
-                <Link key={link.label} to={link.to} className="w-fit transition-colors hover:text-white">
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  className="w-fit transition-colors hover:text-white light:hover:text-[#0a0f1e]"
+                >
                   {link.label}
                 </Link>
               ))}
@@ -57,14 +63,16 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-widest text-gray-500">Follow Us</h4>
+            <h4 className="text-sm font-semibold uppercase tracking-widest text-gray-500 light:text-gray-500">
+              Follow Us
+            </h4>
             <div className="mt-4 flex gap-3">
               {socials.map((social) => (
                 <a
                   key={social.label}
                   href="#"
                   aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-gray-400 transition-colors hover:border-[#1b8ef5]/50 hover:text-[#1b8ef5]"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 light:border-[#e2e8f0] text-gray-400 light:text-gray-500 transition-colors hover:border-[#1b8ef5]/50 hover:text-[#1b8ef5]"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
                     <path d={social.path} />
@@ -75,7 +83,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/10 pt-8 text-center">
+        <div className="mt-14 border-t border-white/10 light:border-[#e2e8f0] pt-8 text-center">
           <p className="text-sm text-gray-500">Copyrights © 2019 Binary Revolutions. All Rights Reserved.</p>
         </div>
       </div>

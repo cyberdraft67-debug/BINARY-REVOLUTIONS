@@ -13,15 +13,15 @@ const stats = [
 function RingFallback({ label }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="h-[110px] w-[110px] rounded-full border border-white/10" />
-      <span className="mt-4 text-center text-sm font-medium text-gray-300">{label}</span>
+      <div className="h-[110px] w-[110px] rounded-full border border-[#1a2440] light:border-[#e2e8f0]" />
+      <span className="mt-4 text-center text-sm font-medium text-white light:text-[#0a0f1e]">{label}</span>
     </div>
   )
 }
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative bg-[#07080f] py-20">
+    <section className="relative bg-[#07080f] light:bg-[#f0f4ff] py-20">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -33,7 +33,7 @@ export default function WhyChooseUs() {
           <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
             Discover Revenue Growth for Your Business
           </h2>
-          <p className="mt-4 text-gray-400">
+          <p className="mt-4 text-gray-400 light:text-gray-600">
             Years of engineering discipline, distilled into measurable delivery capability.
           </p>
         </motion.div>

@@ -1,16 +1,16 @@
-import { lazy, Suspense, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import StatCounter from '../components/StatCounter'
-
-const HeroScene = lazy(() => import('../components/HeroScene'))
+import AnimatedGradientBackground from '../components/AnimatedGradientBackground'
+import { useTheme } from '../context/ThemeContext'
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xkjwdygy'
 const EMAIL = 'info@binaryrevolutions.com'
 
 const inputClass =
-  'w-full rounded-lg border border-white/15 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-gray-500 outline-none transition-all duration-300 focus:border-[#1b8ef5] focus:shadow-[0_0_20px_rgba(27,142,245,0.35)]'
+  'w-full rounded-lg border border-white/15 light:border-[#e2e8f0] bg-white/[0.03] light:bg-white text-white light:text-[#0a0f1e] px-4 py-3 text-sm placeholder:text-gray-500 light:placeholder:text-gray-400 outline-none transition-all duration-300 focus:border-[#1b8ef5] focus:shadow-[0_0_20px_rgba(27,142,245,0.35)]'
 
-const labelClass = 'mb-2 block text-sm font-medium text-gray-300'
+const labelClass = 'mb-2 block text-sm font-medium text-gray-300 light:text-gray-600'
 
 const stats = [
   { value: 12, suffix: '+', label: 'Years Experience' },
@@ -55,7 +55,7 @@ function CopyableEmail() {
     <div className="flex items-center gap-3">
       <a
         href={`mailto:${EMAIL}`}
-        className="text-base text-gray-300 transition-colors hover:text-[#1b8ef5]"
+        className="text-base text-gray-300 light:text-gray-700 transition-colors hover:text-[#1b8ef5]"
       >
         {EMAIL}
       </a>
@@ -65,7 +65,7 @@ function CopyableEmail() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Copy email address"
-        className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/15 text-gray-400 transition-colors hover:border-[#1b8ef5]/50 hover:text-[#1b8ef5]"
+        className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/15 light:border-[#e2e8f0] text-gray-400 light:text-gray-500 transition-colors hover:border-[#1b8ef5]/50 hover:text-[#1b8ef5]"
       >
         {copied ? (
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-4 w-4 text-[#1b8ef5]">
@@ -88,6 +88,9 @@ function CopyableEmail() {
 
 export default function Contact() {
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
+  const { theme } = useTheme()
+  const isLight = theme === 'light'
+  const optionStyle = { backgroundColor: isLight ? '#ffffff' : '#0a0f1e', color: isLight ? '#0a0f1e' : '#ffffff' }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -113,12 +116,10 @@ export default function Contact() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-[#07080f] py-24">
-      {/* Floating particles background */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
-        <Suspense fallback={null}>
-          <HeroScene />
-        </Suspense>
+    <section className="relative overflow-hidden bg-[#07080f] light:bg-[#f0f4ff] py-24">
+      {/* Subtle animated gradient background */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+        <AnimatedGradientBackground />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
@@ -143,10 +144,10 @@ export default function Contact() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
           >
-            <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+            <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-white light:text-[#0a0f1e] sm:text-5xl">
               Let's Build Something Great
             </h2>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-gray-400">
+            <p className="mt-5 max-w-md text-base leading-relaxed text-gray-400 light:text-gray-600">
               Tell us about your project and we'll get back to you within 24 hours.
             </p>
 
@@ -162,7 +163,7 @@ export default function Contact() {
                   aria-label={social.label}
                   whileHover={{ scale: 1.1, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-gray-400 transition-all duration-300 hover:border-[#1b8ef5]/60 hover:text-[#1b8ef5] hover:shadow-[0_0_20px_rgba(27,142,245,0.5)]"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 light:border-[#e2e8f0] text-gray-400 light:text-gray-500 transition-all duration-300 hover:border-[#1b8ef5]/60 hover:text-[#1b8ef5] hover:shadow-[0_0_20px_rgba(27,142,245,0.5)]"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
                     <path d={social.path} />
@@ -176,7 +177,7 @@ export default function Contact() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
-            className="rounded-2xl border border-white/10 bg-white/[0.02] p-8 shadow-[0_0_60px_rgba(27,142,245,0.1)] sm:p-10"
+            className="rounded-2xl border border-white/10 light:border-[#e2e8f0] bg-white/[0.02] light:bg-white p-8 shadow-[0_0_60px_rgba(27,142,245,0.1)] light:shadow-[0_8px_30px_rgba(15,23,42,0.08)] sm:p-10"
           >
             {status === 'success' ? (
               <motion.div
@@ -194,7 +195,7 @@ export default function Contact() {
                     />
                   </svg>
                 </div>
-                <h2 className="text-xl font-semibold text-white">
+                <h2 className="text-xl font-semibold text-white light:text-[#0a0f1e]">
                   Thanks! We'll be in touch within 24 hours.
                 </h2>
               </motion.div>
@@ -250,21 +251,22 @@ export default function Contact() {
                     name="service"
                     required
                     defaultValue=""
-                    className={`${inputClass} [color-scheme:dark]`}
+                    className={inputClass}
+                    style={{ colorScheme: isLight ? 'light' : 'dark' }}
                   >
-                    <option value="" disabled style={{ backgroundColor: '#0a0f1e', color: '#ffffff' }}>
+                    <option value="" disabled style={optionStyle}>
                       Select a service
                     </option>
-                    <option value="Web Solution" style={{ backgroundColor: '#0a0f1e', color: '#ffffff' }}>
+                    <option value="Web Solution" style={optionStyle}>
                       Web Solution
                     </option>
-                    <option value="Mobile Solution" style={{ backgroundColor: '#0a0f1e', color: '#ffffff' }}>
+                    <option value="Mobile Solution" style={optionStyle}>
                       Mobile Solution
                     </option>
-                    <option value="IT Consultancy" style={{ backgroundColor: '#0a0f1e', color: '#ffffff' }}>
+                    <option value="IT Consultancy" style={optionStyle}>
                       IT Consultancy
                     </option>
-                    <option value="Enterprise Software" style={{ backgroundColor: '#0a0f1e', color: '#ffffff' }}>
+                    <option value="Enterprise Software" style={optionStyle}>
                       Enterprise Software
                     </option>
                   </select>
@@ -293,7 +295,8 @@ export default function Contact() {
                     name="date"
                     type="date"
                     required
-                    className={`${inputClass} [color-scheme:dark]`}
+                    className={inputClass}
+                    style={{ colorScheme: isLight ? 'light' : 'dark' }}
                   />
                 </div>
 

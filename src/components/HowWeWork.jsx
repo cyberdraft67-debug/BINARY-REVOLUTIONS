@@ -41,7 +41,7 @@ const steps = [
 
 export default function HowWeWork() {
   return (
-    <section className="relative border-t border-white/10 bg-[#07080f] py-20">
+    <section className="relative border-t border-white/10 light:border-[#e2e8f0] bg-[#07080f] light:bg-[#f0f4ff] py-20">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -51,7 +51,7 @@ export default function HowWeWork() {
           className="mx-auto max-w-2xl text-center"
         >
           <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl">How We Work</h2>
-          <p className="mt-4 text-gray-400">
+          <p className="mt-4 text-gray-400 light:text-gray-600">
             A proven process that turns requirements into shipped, reliable software.
           </p>
         </motion.div>
@@ -73,7 +73,7 @@ export default function HowWeWork() {
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.5, delay: i * 0.2 + 0.15 }}
-                className="relative z-10 mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#1b8ef5]/40 bg-[#07080f] text-[#1b8ef5] shadow-[0_0_30px_rgba(27,142,245,0.35)]"
+                className="relative z-10 mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#1b8ef5]/40 bg-[#07080f] light:bg-[#f0f4ff] text-[#1b8ef5] shadow-[0_0_30px_rgba(27,142,245,0.35)]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-7 w-7">
                   {step.icon}
@@ -82,8 +82,10 @@ export default function HowWeWork() {
                   {i + 1}
                 </span>
               </motion.div>
-              <h3 className="text-xl font-semibold text-white">{step.title}</h3>
-              <p className="mt-3 max-w-xs text-sm leading-relaxed text-gray-400">{step.description}</p>
+              <h3 className="text-xl font-semibold text-white light:text-[#0a0f1e]">{step.title}</h3>
+              <p className="mt-3 max-w-xs text-sm leading-relaxed text-gray-400 light:text-gray-600">
+                {step.description}
+              </p>
             </motion.div>
           ))}
         </div>

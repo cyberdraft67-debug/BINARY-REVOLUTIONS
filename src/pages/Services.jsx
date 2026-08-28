@@ -87,10 +87,10 @@ function ServiceCard({ service, index }) {
       transition={{ duration: 0.6, delay: (index % 3) * 0.15 }}
       whileHover={{ y: -6 }}
       style={{ rotateX, rotateY, transformPerspective: 800 }}
-      className="group relative overflow-hidden rounded-2xl bg-white/[0.02] p-px shadow-[0_0_35px_rgba(27,142,245,0.14)]"
+      className="group relative overflow-hidden rounded-2xl bg-white/[0.02] light:bg-white p-px shadow-[0_0_35px_rgba(27,142,245,0.14)] light:shadow-[0_8px_30px_rgba(15,23,42,0.08)]"
     >
       {/* Static border */}
-      <div className="pointer-events-none absolute inset-0 rounded-2xl border border-white/10 transition-opacity duration-500 group-hover:opacity-0" />
+      <div className="pointer-events-none absolute inset-0 rounded-2xl border border-white/10 light:border-[#e2e8f0] transition-opacity duration-500 group-hover:opacity-0" />
 
       {/* Animated rotating gradient border, revealed on hover */}
       <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
@@ -109,15 +109,15 @@ function ServiceCard({ service, index }) {
 
       <div
         style={{ transform: 'translateZ(30px)', transformStyle: 'preserve-3d' }}
-        className="relative z-10 h-full rounded-[15px] bg-[#07080f] p-8"
+        className="relative z-10 h-full rounded-[15px] bg-[#07080f] light:bg-white p-8"
       >
         <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-[#1b8ef5]/40 bg-[#1b8ef5]/10 text-[#1b8ef5]">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-6 w-6">
             {service.icon}
           </svg>
         </div>
-        <h3 className="text-xl font-semibold text-white">{service.title}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-gray-400">{service.description}</p>
+        <h3 className="text-xl font-semibold text-white light:text-[#0a0f1e]">{service.title}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-gray-400 light:text-gray-600">{service.description}</p>
       </div>
     </motion.div>
   )
@@ -132,7 +132,10 @@ export default function Services() {
         subtitle="End-to-end enterprise software, from strategy to deployment."
       />
 
-      <section className="relative overflow-hidden bg-[#07080f] py-24" style={{ perspective: 1200 }}>
+      <section
+        className="relative overflow-hidden bg-[#07080f] light:bg-[#f0f4ff] py-24"
+        style={{ perspective: 1200 }}
+      >
         <div className="mx-auto max-w-7xl px-6">
           <div className="relative">
             {/* Spotlight beam dropping from above, landing centered over the cards */}

@@ -25,7 +25,7 @@ export default function About() {
         subtitle="An IT services provider with the skills and expertise to facilitate complex business solutions."
       />
 
-      <section className="relative overflow-hidden bg-[#07080f] py-24">
+      <section className="relative overflow-hidden bg-[#07080f] light:bg-[#f0f4ff] py-24">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 px-6 md:grid-cols-2 md:items-start">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -34,12 +34,12 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Our Story</h2>
-            <p className="mt-6 text-base leading-relaxed text-gray-400">
+            <p className="mt-6 text-base leading-relaxed text-gray-400 light:text-gray-600">
               Binary Revolutions is an IT services provider with skills and expertise to facilitate
               complex business solutions. We commenced with a small team in 2012 and grew rapidly in
               profits, intellectual capital, and market access.
             </p>
-            <p className="mt-5 text-base leading-relaxed text-gray-400">
+            <p className="mt-5 text-base leading-relaxed text-gray-400 light:text-gray-600">
               We believe in delivering a personal, passionate and tailored service to each and every
               one of our clients.
             </p>
@@ -88,16 +88,16 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="relative z-10 mt-16 rounded-2xl border border-white/10 bg-white/[0.02] p-8 shadow-[0_0_35px_rgba(27,142,245,0.14)]"
+              className="relative z-10 mt-16 rounded-2xl border border-white/10 light:border-[#e2e8f0] bg-white/[0.02] light:bg-white p-8 shadow-[0_0_35px_rgba(27,142,245,0.14)] light:shadow-[0_8px_30px_rgba(15,23,42,0.08)]"
             >
               <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-500">
                 At a Glance
               </h3>
-              <dl className="mt-6 divide-y divide-white/10">
+              <dl className="mt-6 divide-y divide-white/10 light:divide-[#e2e8f0]">
                 {facts.map((fact) => (
                   <div key={fact.label} className="flex items-center justify-between py-4 first:pt-0 last:pb-0">
-                    <dt className="text-sm text-gray-400">{fact.label}</dt>
-                    <dd className="text-base font-semibold text-white">{fact.value}</dd>
+                    <dt className="text-sm text-gray-400 light:text-gray-600">{fact.label}</dt>
+                    <dd className="text-base font-semibold text-white light:text-[#0a0f1e]">{fact.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -106,7 +106,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="relative border-t border-white/10 bg-[#07080f] py-24">
+      <section className="relative border-t border-white/10 light:border-[#e2e8f0] bg-[#07080f] light:bg-[#f0f4ff] py-24">
         <div className="mx-auto max-w-3xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -116,7 +116,7 @@ export default function About() {
             className="text-center"
           >
             <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Our Expertise</h2>
-            <p className="mt-4 text-gray-400">Where we invest our engineering depth.</p>
+            <p className="mt-4 text-gray-400 light:text-gray-600">Where we invest our engineering depth.</p>
           </motion.div>
 
           <div className="mt-12 space-y-8">

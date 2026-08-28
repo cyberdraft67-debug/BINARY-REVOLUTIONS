@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { motion, animate } from 'framer-motion'
 import * as THREE from 'three'
+import { useTheme } from '../context/ThemeContext'
 
-function RingMesh({ percentage, active, delay }) {
+function RingMesh({ percentage, active, delay, trackColor }) {
   const groupRef = useRef(null)
   const fillRef = useRef(null)
   const progressRef = useRef(0)
@@ -38,7 +39,7 @@ function RingMesh({ percentage, active, delay }) {
       <group ref={groupRef}>
         <mesh>
           <torusGeometry args={[1, 0.16, 16, 64]} />
-          <meshBasicMaterial color="#ffffff" transparent opacity={0.08} />
+          <meshBasicMaterial color={trackColor} />
         </mesh>
         <mesh ref={fillRef}>
           <torusGeometry args={[1, 0.16, 16, 64, 0.001]} />
@@ -52,6 +53,8 @@ function RingMesh({ percentage, active, delay }) {
 export default function StatRing3D({ percentage, label, delay = 0 }) {
   const [active, setActive] = useState(false)
   const [display, setDisplay] = useState(0)
+  const { theme } = useTheme()
+  const trackColor = theme === 'light' ? '#e2e8f0' : '#1a2440'
 
   useEffect(() => {
     if (!active) return
@@ -78,13 +81,13 @@ export default function StatRing3D({ percentage, label, delay = 0 }) {
           gl={{ alpha: true }}
           style={{ pointerEvents: 'none' }}
         >
-          <RingMesh percentage={percentage} active={active} delay={delay} />
+          <RingMesh percentage={percentage} active={active} delay={delay} trackColor={trackColor} />
         </Canvas>
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-xl font-bold text-white">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-2xl font-extrabold text-[#1b8ef5]">
           {display}%
         </div>
       </div>
-      <span className="mt-4 text-center text-sm font-medium text-gray-300">{label}</span>
+      <span className="mt-4 text-center text-sm font-medium text-white light:text-[#0a0f1e]">{label}</span>
     </motion.div>
   )
 }

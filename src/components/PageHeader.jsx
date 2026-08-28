@@ -6,7 +6,7 @@ export default function PageHeader({ eyebrow, title, subtitle }) {
   const glowY = useParallax(0.18)
 
   return (
-    <section className="relative overflow-hidden border-b border-white/10 bg-[#07080f] py-24">
+    <section className="relative overflow-hidden border-b border-white/10 light:border-[#e2e8f0] bg-[#07080f] light:bg-[#f0f4ff] py-24">
       <motion.div
         style={{ y: dotsY }}
         className="dot-grid pointer-events-none absolute inset-0 opacity-20 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black_30%,transparent_100%)]"
@@ -22,7 +22,7 @@ export default function PageHeader({ eyebrow, title, subtitle }) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#1b8ef5]/40 bg-[#1b8ef5]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#93c5fd]"
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#1b8ef5]/40 bg-[#1b8ef5]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#93c5fd] light:text-[#1d4ed8]"
           >
             {eyebrow}
           </motion.span>
@@ -40,7 +40,7 @@ export default function PageHeader({ eyebrow, title, subtitle }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto mt-5 max-w-2xl text-lg text-gray-400"
+            className="mx-auto mt-5 max-w-2xl text-lg text-gray-400 light:text-gray-600"
           >
             {subtitle}
           </motion.p>
