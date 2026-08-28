@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import GlowButton from './GlowButton'
@@ -5,6 +6,39 @@ import AnimatedGradientBackground from './AnimatedGradientBackground'
 import TerminalWindow from './TerminalWindow'
 
 export default function Hero() {
+  const gridTiltRef = useRef(null)
+
+  useEffect(() => {
+    const tilt = gridTiltRef.current
+    if (!tilt) return
+
+    const target = { x: 0, y: 0 }
+    const current = { x: 0, y: 0 }
+    let rafId
+
+    const handleMouseMove = (e) => {
+      const rotateX = (e.clientY / window.innerHeight - 0.5) * -10
+      const rotateY = (e.clientX / window.innerWidth - 0.5) * 10
+      target.x = rotateX
+      target.y = rotateY
+    }
+
+    const tick = () => {
+      current.x += (target.x - current.x) * 0.08
+      current.y += (target.y - current.y) * 0.08
+      tilt.style.transform = `rotateX(${current.x}deg) rotateY(${current.y}deg)`
+      rafId = requestAnimationFrame(tick)
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    rafId = requestAnimationFrame(tick)
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      cancelAnimationFrame(rafId)
+    }
+  }, [])
+
   return (
     <section className="relative w-full overflow-hidden bg-[#07080f] light:bg-[#f0f4ff] lg:h-[calc(100dvh-68px)] lg:min-h-[640px]">
       {/* Subtle animated gradient background */}
@@ -12,20 +46,22 @@ export default function Hero() {
         <AnimatedGradientBackground />
       </div>
 
-      {/* Subtle perspective grid floor, fading into the distance */}
+      {/* Interactive 3D perspective grid floor — tilts toward the mouse, fades into the distance */}
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[55%] overflow-hidden"
-        style={{ perspective: '600px' }}
+        style={{ perspective: '800px' }}
       >
-        <div
-          className="perspective-grid absolute inset-x-[-50%] bottom-0 h-[200%] w-[200%]"
-          style={{
-            transform: 'rotateX(75deg)',
-            transformOrigin: 'bottom',
-            maskImage: 'linear-gradient(to top, black 0%, transparent 75%)',
-            WebkitMaskImage: 'linear-gradient(to top, black 0%, transparent 75%)',
-          }}
-        />
+        <div ref={gridTiltRef} className="absolute inset-0" style={{ transformStyle: 'preserve-3d' }}>
+          <div
+            className="perspective-grid absolute inset-x-[-50%] bottom-0 h-[200%] w-[200%]"
+            style={{
+              transform: 'rotateX(75deg)',
+              transformOrigin: 'bottom',
+              maskImage: 'linear-gradient(to top, black 0%, transparent 75%)',
+              WebkitMaskImage: 'linear-gradient(to top, black 0%, transparent 75%)',
+            }}
+          />
+        </div>
       </div>
 
       {/* Hero content */}

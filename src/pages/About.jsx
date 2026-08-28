@@ -88,7 +88,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="relative z-10 mt-16 rounded-2xl border border-white/10 light:border-[#e2e8f0] bg-white/[0.02] light:bg-white p-8 shadow-[0_0_35px_rgba(27,142,245,0.14)] light:shadow-[0_8px_30px_rgba(15,23,42,0.08)]"
+              className="glance-card relative z-10 mt-16 rounded-2xl bg-white/[0.02] light:bg-white p-8"
             >
               <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-500">
                 At a Glance
